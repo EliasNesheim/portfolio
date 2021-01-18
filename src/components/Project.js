@@ -17,14 +17,14 @@ export default function Project() {
     }, [])
 
     return (
-        <main className="bg-green-100 min-h-screen p-12">
+        <main className="bg-gradient-to-b from-red-200 to-yellow-200 min-h-screen p-12">
             <section className="conatiner mx-auto">
                 <h1 className="text-5xl flex justify-center cursive">Mine prosjekter</h1>
                 <h2 className="text-lg text-gray-600 flex justify-center mb-12">Her kan du se prosjekter jeg har laget, enter for meg selv, eller for skole</h2>
-                <section className="grid grid-cols-2 gap-8">
+                <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {ProjectData && ProjectData.map((prosjekt, index) => (
                         <article className="relative rounded-lg shadow-xl bg-white p-16">
-                        <h3 className="text-gray-800 text-3xl font-bold mb-2 hover:text-red-700">
+                        <h3 className="text-lg md:text-3xl text-gray-800  font-bold mb-2 hover:text-red-700">
                             <a
                                 href={prosjekt.link}
                                 alt={prosjekt.tittel}

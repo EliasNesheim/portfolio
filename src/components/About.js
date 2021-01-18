@@ -24,11 +24,10 @@ export default function About() {
     if (!author) return <div>error :/</div>
 
     return (
-        <main className="relative">
-            <img src={image} alt="background polygon" className="absolute w-full"/>
-            <div className="p-10 lg:pt-48 container mx-auto relative">
-                <section className="bg-green-800 rounded-lg shadow-2xl lg:flex p-20">
-                    <img src={urlFor(author.authorImage).url()} className="rounded w-32 h-32 lg:w-64 h-64 mr-7" alt={author.name}/>
+        <main className="bg-gradient-to-b from-red-200 to-yellow-200 relative">
+            <div className="p-10 lg:pt-20 container mx-auto relative">
+                <section className="bg-green-800 max-h-xl rounded-lg shadow-2xl lg:flex p-20">
+                    <img src={urlFor(author.authorImage).url()} className="rounded bilde max-w-xs  lg:max-w-xl mr-7" alt={author.name}/>
                     <div className="text-lg flex flex-col justify-center">
                         <h1 className="cursive text-6xl text-green-300 mb-4">
                             Hey there. I'm{" "}
