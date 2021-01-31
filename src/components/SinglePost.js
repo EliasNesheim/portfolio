@@ -21,6 +21,7 @@ export default function SingelPost() {
                     title,
                     _id,
                     slug,
+                    publishedAt,
                     mainImage{
                         asset->{
                             _id,
@@ -36,7 +37,12 @@ export default function SingelPost() {
         .catch(console.error);
     }, [slug]);
 
+   
+
     if(!singelPost) return <div>Loading...</div>;
+    
+    const dato = singelPost.publishedAt;
+    const dato2 = dato.slice(0,10)
 
     return (
         <main className="bg-gradient-to-b from-red-200 to-yellow-200 min-h-screen p-12">
@@ -67,6 +73,7 @@ export default function SingelPost() {
                 </header>
                 <div className="px-16 lg:px-48 py-12 lg:py-20 prose lg_prose-xl max-w-full">
                     <BlockContent blocks={singelPost.body} projectId="4ghgt5mo" dataset="production" />
+                    <p>{dato2}</p>
                 </div>
             </article>
         </main>

@@ -2,10 +2,29 @@ import React, { useEffect, useState} from "react";
 import sanityClient from "../client.js";
 import imageUrlBuilder from "@sanity/image-url"
 import BlockContent from "@sanity/block-content-to-react";
+import { Parallax } from "react-parallax";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
     return builder.image(source)
+}
+
+const inlineStyle = {
+    background: '#fff',
+    left: '50%',
+    top: '50%',
+    position: 'absolute',
+    padding: '20px',
+    transform: 'translate(-50%, -50%)'
+}
+const inlineStyle2 = {
+    background: '#fff',
+    left: '50%',
+    top: '20%',
+    position: 'absolute',
+    padding: '20px',
+    radius: '15px',
+    transform: 'translate(-50%, -50%)'
 }
 
 export default function About() {
@@ -23,21 +42,20 @@ export default function About() {
     if (!author) return <div>error :/</div>
 
     return (
-        <main className="bg-gradient-to-b from-red-200 to-yellow-200 relative">
-            <div className="p-10 lg:pt-20 container mx-auto relative">
-                <section className="bg-green-800 max-h-xl rounded-lg shadow-2xl lg:flex p-20">
-                    <img src={urlFor(author.authorImage).url()} className="rounded bilde max-w-xs  lg:max-w-xl mr-7" alt={author.name}/>
-                    <div className="text-lg flex flex-col justify-center">
-                        <h1 className="cursive text-6xl text-green-300 mb-4">
-                            Hey there. I'm{" "}
-                            <span className="text-green-100">{author.name}</span>
-                        </h1>
-                        <div className="prose lg:prose:xl text-white">
-                            <BlockContent blocks={author.bio} projectId="4ghgt5mo" dataset="production"/>
-                        </div>
+        <div name="Om">
+        <Parallax  bgImage={urlFor(author.authorImage).url()} alt={author.name} strength={200}>
+                <div style={{height: window.screen.height}}>
+                    <div className="text-5xl">
+                    <div style={inlineStyle2}>
+                        Om {" "}
+                        <span className="text-purple-300">{author.name}</span>
                     </div>
-                </section>
-            </div>
-        </main>
+                    </div>
+                    <div style={inlineStyle}>
+                    <BlockContent blocks={author.bio} projectId="4ghgt5mo" dataset="production"/>
+                    </div>
+                </div>
+        </Parallax>
+        </div>
         )
 }

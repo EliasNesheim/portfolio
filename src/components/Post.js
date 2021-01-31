@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import sanityClient from "../client.js";
+import { motion } from 'framer-motion'
 
 
-export default function Post() {
+export default function Post({ setSelectedImg, setSlug2 }) {
     const [postData, setPost] = useState(null);
+    
 
     useEffect(() => {
         sanityClient
             .fetch(
-                `*[_type == "post"]{
+                `*[_type == "post"] | order(publishedAt desc) {
                     title,
                     slug,
+                    publishedAt,
                     mainImage{
                         asset->{
                             _id,
@@ -24,30 +27,37 @@ export default function Post() {
             .then((data) => setPost(data))
             .catch(console.error);
     }, []);
+
+   
     
     return (
         
-        <main className="bg-gradient-to-b from-red-200 to-yellow-200 min-h-screen p-12">
+        <main name="DevLog" className="purplebg min-h-screen p-12">
             <section className="container mx-auto">
-                <h1 className="text-5xl flex justify-center cursive">Poster</h1>
+                <h1 className="text-5xl flex justify-center ">Poster</h1>
                 <h2 className="text-lg text-gray-600 flex justify-center mb-12">Velkomen til min side med poster.</h2>
                 <div className="grid md-grid-cols-2 lg:grid-cols-3 gap-8">
                     {postData && postData.map((post, index) => (
                     <article>
-                        <Link to={"/post/" + post.slug.current} key={post.slug.current}>
-                        <span className="block h-64 relative rounded shadow leading-snug bg-white border-green-400" key={index}>
+                        <motion.span className="block h-64 relative rounded shadow leading-snug bg-white border-green-400 opacity-80" key={index}
+                            whileHover={{ opacity: 1}}
+                            onClick={() => {
+                                setSelectedImg(post.mainImage.asset.url);
+                                setSlug2(post.slug);
+                                }
+                            }
+                        >
                             <img
                                 src={post.mainImage.asset.url}
                                 alt={post.mainImage.alt}
                                 className="w-full h-full rounded-r object-cover absolute"
                             />
                             <span className="block relative h-full flex justify-end items-end pr-4 pb-4">
-                                <h3 className="text-gray-800 text-lg font-bold px-3 py-4 bg-red-700 text-red-100 bg-opacity-75 rounded">
+                                <h3 className="text-gray-800 text-lg font-bold px-3 py-4 bg-purple-300  bg-opacity-75 rounded">
                                     {post.title}
                                 </h3>
                             </span>
-                        </span>
-                        </Link>
+                        </motion.span>
                     </article>
                     ))}
                 </div>
