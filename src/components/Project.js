@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import sanityClient from "../client.js"; 
 
+import { Parallax } from "react-parallax";
+import image from "../prosjekt.jpg";
+
+
 export default function Project() {
     const [ProjectData, setProjectData] = useState(null);
 
@@ -17,13 +21,13 @@ export default function Project() {
     }, [])
 
     return (
-        <main className="bg-gradient-to-b from-red-200 to-yellow-200 min-h-screen p-12">
-            <section className="conatiner mx-auto">
-                <h1 className="text-5xl flex justify-center cursive">Mine prosjekter</h1>
+            <Parallax bgImage={image} name="Prosjekter" alt="background polygon" strength={200}>
+            <section className="conatiner mx-auto p-10">
+                <h1 className="text-5xl flex justify-center">Mine prosjekter</h1>
                 <h2 className="text-lg text-gray-600 flex justify-center mb-12">Her kan du se prosjekter jeg har laget, enter for meg selv, eller for skole</h2>
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {ProjectData && ProjectData.map((prosjekt, index) => (
-                        <article className="relative rounded-lg shadow-xl bg-white p-16">
+                        <article className="relative rounded-lg shadow-xl bg-white p-16" key={index.toString()}>
                         <h3 className="text-lg md:text-3xl text-gray-800  font-bold mb-2 hover:text-red-700">
                             <a
                                 href={prosjekt.link}
@@ -50,7 +54,7 @@ export default function Project() {
                             <p className="my-6 text-lg text-gray-700 leading-relaxed">
                             {prosjekt.beskrivelse}
                             </p>
-                            <a href={prosjekt.link} className="text-red-500 font-bold hover:underline hover:text-red-400 text-xl float-right">
+                            <a href={prosjekt.link} className="text-purple-300 font-bold hover:underline hover:text-red-400 text-xl float-right">
                             lenke til prosjektet {" "}
                             <span></span>
                             </a>
@@ -60,6 +64,6 @@ export default function Project() {
 
                 </section>
             </section>
-        </main>
+            </Parallax>
     )
 }
