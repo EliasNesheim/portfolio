@@ -21,10 +21,10 @@ export default function Project() {
     }, [])
 
     return (
-            <Parallax bgImage={image} name="Prosjekter" alt="background polygon" strength={200}>
-            <section className="conatiner mx-auto p-10">
+            <Parallax bgImage={image}  alt="background polygon" strength={200}>
+            <section name="Prosjekter" className="conatiner mx-auto p-10">
                 <h1 className="text-5xl flex justify-center">Mine prosjekter</h1>
-                <h2 className="text-lg text-gray-600 flex justify-center mb-12">Her kan du se prosjekter jeg har laget, enter for meg selv, eller for skole</h2>
+                <h2 className="text-lg text-gray-600 flex justify-center mb-12">Her kan du se prosjekter jeg har laget, enten for meg selv, eller for skole</h2>
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {ProjectData && ProjectData.map((prosjekt, index) => (
                         <article className="relative rounded-lg shadow-xl bg-white p-16" key={index.toString()}>
