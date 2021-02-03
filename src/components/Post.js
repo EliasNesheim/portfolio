@@ -34,7 +34,7 @@ export default function Post({ setSelectedImg, setSlug2 }) {
         
         <main name="DevLog" className="purplebg min-h-screen p-12">
             <section className="container mx-auto">
-                <h1 className="text-5xl flex justify-center ">Poster</h1>
+                <h1 className="text-5xl flex justify-center ">DevLog</h1>
                 <h2 className="text-lg text-gray-600 flex justify-center mb-12">Velkomen til min side med poster.</h2>
                 <div className="grid md-grid-cols-2 lg:grid-cols-3 gap-8">
                     {postData && postData.map((post, index) => (
